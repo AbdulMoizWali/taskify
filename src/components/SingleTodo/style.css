@@ -1,0 +1,50 @@
+.todoSingle {
+  display: flex;
+  width: 29.5%;
+  border-radius: 20px;
+  padding: 15px 20px;
+  margin-top: 15px;
+  background-color: aliceblue;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.todoDone {
+  color: rgb(223, 223, 223);
+  background-color: rgb(29, 74, 122);
+}
+
+.todoTask {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  font-size: 20px;
+}
+
+.todoTask:focus {
+  outline: none;
+}
+
+.todoSingle div {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 25px;
+  line-height: 25px;
+}
+
+@media (max-width: 1200px) {
+  .todoSingle {
+    width: 40%;
+  }
+}
+
+@media (max-width: 700px) {
+  .todoSingle {
+    width: 100%;
+  }
+}
