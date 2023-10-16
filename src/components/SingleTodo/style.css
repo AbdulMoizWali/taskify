@@ -15,7 +15,9 @@
 }
 
 .todoTask {
+  width: 100%;
   flex: 1;
+  /* background-color: turquoise; */
   padding: 5px;
   border: none;
   font-size: 20px;
@@ -39,7 +41,7 @@
 
 @media (max-width: 1200px) {
   .todoSingle {
-    width: 40%;
+    width: 60%;
   }
 }
 
