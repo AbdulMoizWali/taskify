@@ -3,10 +3,14 @@
   
 # Screenshots
 ## Simple Todo
+See demo here. https://simpletaskify.netlify.app/
 
 ![image](https://github.com/AbdulMoizWali/taskify/assets/85098925/5e7ce0d3-598b-4ef9-af66-82385c119d85)
 
 ![image](https://github.com/AbdulMoizWali/taskify/assets/85098925/a681735c-04e9-4465-afb3-bc0e4a4531e1)
+
+![image](https://github.com/AbdulMoizWali/taskify/assets/85098925/6fc37bc0-46f0-4d53-bebb-ca248053d15c)
+
 
 
 
