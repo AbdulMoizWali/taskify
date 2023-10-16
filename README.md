@@ -1,3 +1,15 @@
+# About Project
+  Taskify is a todo-app. This is a practice react + typescript project. There will be two variant one will be simple todo and another will a todo with drap and drop functionality.
+  
+# Screenshots
+## Simple Todo
+
+![image](https://github.com/AbdulMoizWali/taskify/assets/85098925/5e7ce0d3-598b-4ef9-af66-82385c119d85)
+
+![image](https://github.com/AbdulMoizWali/taskify/assets/85098925/a681735c-04e9-4465-afb3-bc0e4a4531e1)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
