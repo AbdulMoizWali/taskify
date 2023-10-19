@@ -10,6 +10,8 @@ interface Props {
   todo: Todo;
   activeTodos: Todo[];
   setActiveTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  dropabbleId: string;
+  setArchivedTodos?: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
 const SingleTodo: React.FC<Props> = ({
@@ -17,6 +19,8 @@ const SingleTodo: React.FC<Props> = ({
   todo,
   activeTodos: todos,
   setActiveTodos: setTodos,
+  dropabbleId,
+  setArchivedTodos,
 }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editTask, setEditTask] = useState<string>(todo.task);
@@ -40,7 +44,19 @@ const SingleTodo: React.FC<Props> = ({
     const updatedTodos = todos.filter((todo) => {
       return todo.id !== id;
     });
-    setTodos(updatedTodos);
+    if (setArchivedTodos) {
+      console.log("====================================");
+      console.log("setArchivedTodos");
+      console.log("====================================");
+      let removedTodo: Todo | undefined = todos
+        .filter((todo) => todo.id === id)
+        ?.pop();
+      if (removedTodo) {
+        removedTodo.isDone = true;
+        setArchivedTodos([removedTodo]);
+      }
+      setTodos(updatedTodos);
+    }
   };
 
   const todoTaskEdit = (id: number) => {
@@ -63,7 +79,9 @@ const SingleTodo: React.FC<Props> = ({
     <Draggable draggableId={todo.id.toString()} index={index}>
       {(provided, snapshot) => (
         <form
-          className={todo.isDone ? "todoSingle todoDone" : "todoSingle"}
+          className={`todoSingle ${todo.isDone ? "todoDone" : ""} ${
+            dropabbleId === "ArchivedTodos" ? "todoArchived" : ""
+          }`}
           onSubmit={(e) => todoEdit(e, todo.id)}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -101,10 +119,12 @@ const SingleTodo: React.FC<Props> = ({
                 }}
               />
             )}
-            <AiOutlineDelete
-              className="icon"
-              onClick={() => todoDelete(todo.id)}
-            />
+            {dropabbleId === "ArchivedTodos" ? null : (
+              <AiOutlineDelete
+                className="icon"
+                onClick={() => todoDelete(todo.id)}
+              />
+            )}
             {/* <MdDone className="icon" onClick={() => todoDone(todo.id)} /> */}
           </div>
         </form>

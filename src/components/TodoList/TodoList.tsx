@@ -9,6 +9,8 @@ interface Props {
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   completedTodos: Todo[];
   setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  archivedTodos: Todo[];
+  setArchivedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
 const TodoList: React.FC<Props> = ({
@@ -16,6 +18,8 @@ const TodoList: React.FC<Props> = ({
   setTodos,
   completedTodos,
   setCompletedTodos,
+  archivedTodos,
+  setArchivedTodos,
 }) => {
   return (
     <div className="container">
@@ -27,6 +31,9 @@ const TodoList: React.FC<Props> = ({
             {...provided.droppableProps}
           >
             <span className="todosHeading">Active Task</span>
+            {todos.length === 0 ? (
+              <span className="noTodos">No Active Task</span>
+            ) : null}
             {todos.map((todo, index) => {
               return (
                 <SingleTodo
@@ -36,6 +43,8 @@ const TodoList: React.FC<Props> = ({
                   todo={todo}
                   activeTodos={todos}
                   setActiveTodos={setTodos}
+                  dropabbleId={"ActiveTodos"}
+                  setArchivedTodos={setArchivedTodos}
                 />
               );
             })}
@@ -52,14 +61,47 @@ const TodoList: React.FC<Props> = ({
             {...provided.droppableProps}
           >
             <span className="todosHeading">Completed Task</span>
+            {completedTodos.length === 0 ? (
+              <span className="noTodos">No Completed Task</span>
+            ) : null}
             {completedTodos.map((todo, index) => {
               return (
                 <SingleTodo
                   index={index}
                   key={todo.id}
                   todo={todo}
-                  activeTodos={todos}
+                  activeTodos={completedTodos}
                   setActiveTodos={setCompletedTodos}
+                  dropabbleId={"CompletedTodos"}
+                  setArchivedTodos={setArchivedTodos}
+                />
+              );
+            })}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+
+      <Droppable droppableId="ArchivedTodos">
+        {(provided) => (
+          <div
+            className="todos archived"
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            <span className="todosHeading">Archived Task</span>
+            {archivedTodos.length === 0 ? (
+              <span className="noTodos">No Archived Task</span>
+            ) : null}
+            {archivedTodos.map((todo, index) => {
+              return (
+                <SingleTodo
+                  index={index}
+                  key={todo.id}
+                  todo={todo}
+                  activeTodos={todos}
+                  setActiveTodos={setArchivedTodos}
+                  dropabbleId={"ArchivedTodos"}
                 />
               );
             })}

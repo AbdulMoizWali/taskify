@@ -20,14 +20,29 @@
   background-color: green;
 }
 
+.archived {
+  background-color: rgb(129, 22, 22);
+}
+
 .todosHeading {
   font-size: 30px;
   color: #fff;
 }
 
+.noTodos {
+  height: 65px;
+  color: rgba(255, 255, 255, 0.479);
+  font-size: 18px;
+  margin: auto;
+  margin-top: 15px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
 @media (max-width: 1100px) {
   .todos {
-    width: 45%;
+    width: 27%;
   }
 }
 
@@ -41,5 +56,11 @@
     width: calc(95% - 30px);
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@media (min-width: 1100px) {
+  .todos {
+    width: 31%;
   }
 }

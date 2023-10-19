@@ -9,6 +9,7 @@ const App: React.FC = () => {
   const [task, setTask] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
   const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
+  const [archivedTodos, setArchivedTodos] = useState<Todo[]>([]);
 
   const addTask = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ const App: React.FC = () => {
   };
 
   const onDragEnd = (result: DropResult) => {
-    const { destination, source, draggableId } = result;
+    const { destination, source } = result;
 
     if (!destination) return;
 
@@ -53,25 +54,32 @@ const App: React.FC = () => {
 
     let add,
       active = todos,
-      completed = completedTodos;
+      completed = completedTodos,
+      archived = archivedTodos;
 
+    // active.splice will delete the item from the array
     if (source.droppableId === "ActiveTodos") {
       add = active[source.index];
-      // active.splice will delete the item from the array
       active.splice(source.index, 1);
-    } else {
+    } else if (source.droppableId === "CompletedTodos") {
       add = completed[source.index];
       completed.splice(source.index, 1);
+    } else {
+      add = archived[source.index];
+      archived.splice(source.index, 1);
     }
 
     if (destination.droppableId === "ActiveTodos") {
       add.isDone = false;
       active.splice(destination.index, 0, add);
-    } else {
+    } else if (destination.droppableId === "CompletedTodos") {
       add.isDone = true;
       completed.splice(destination.index, 0, add);
+    } else {
+      archived.splice(destination.index, 0, add);
     }
 
+    setArchivedTodos(archived);
     setCompletedTodos(completed);
     setTodos(active);
   };
@@ -87,6 +95,8 @@ const App: React.FC = () => {
           setTodos={setTodos}
           completedTodos={completedTodos}
           setCompletedTodos={setCompletedTodos}
+          archivedTodos={archivedTodos}
+          setArchivedTodos={setArchivedTodos}
         />
       </div>{" "}
     </DragDropContext>
