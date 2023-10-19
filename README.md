@@ -12,6 +12,12 @@ See demo here. https://simpletaskify.netlify.app/
 ![image](https://github.com/AbdulMoizWali/taskify/assets/85098925/6fc37bc0-46f0-4d53-bebb-ca248053d15c)
 
 
+## Drag and Drop Todo
+See demo here. https://dndtaskify.netlify.app/
+
+![Taskify](https://github.com/AbdulMoizWali/taskify/assets/85098925/5cbe6119-3e6c-49df-b91c-44caef797bf7)
+
+
 
 
 # Getting Started with Create React App
