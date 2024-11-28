@@ -94,23 +94,28 @@ const SingleTodo: React.FC<Props> = ({
       )} */}
           {isEdit ? (
             <input
+              id={"edit_input_" + todo.id}
               ref={inputRef}
               className="todoTask"
               value={editTask}
               onChange={(e) => setEditTask(e.target.value)}
             />
           ) : (
-            <span className="todoTask">{todo.task}</span>
+            <span id={"task_" + todo.id} className="todoTask">
+              {todo.task}
+            </span>
           )}
 
           <div>
             {todo.isDone ? null : isEdit ? (
               <AiFillEdit
+                id={"edit_off_" + todo.id}
                 className="icon"
                 onClick={(e) => todoTaskEdit(todo.id)}
               />
             ) : (
               <AiOutlineEdit
+                id={"edit_on_" + todo.id}
                 className="icon"
                 onClick={() => {
                   if (!isEdit && !todo.isDone) {
@@ -121,6 +126,7 @@ const SingleTodo: React.FC<Props> = ({
             )}
             {dropabbleId === "ArchivedTodos" ? null : (
               <AiOutlineDelete
+                id={"delete_" + todo.id}
                 className="icon"
                 onClick={() => todoDelete(todo.id)}
               />

@@ -19,13 +19,16 @@ const InputField: React.FC<Prop> = ({ task, setTask, addCallback }) => {
       }}
     >
       <input
+        id="taskInput"
         ref={inputRef}
         type="input"
         value={task}
         onChange={(e) => setTask(e.target.value)}
         placeholder="Enter a task..."
       />
-      <button type="submit">Go</button>
+      <button id="addTask" type="submit">
+        Go
+      </button>
     </form>
   );
 };
